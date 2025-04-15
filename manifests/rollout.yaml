@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: ghcr.io/tedyr10/ci_cd_lab:latest
+          image: ghcr.io/tedyr10/go-simple-webserver@sha256:e9e939cc118841c45e8920402be9aa20c89c69d55680e5dc44c271d2514335ca
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
