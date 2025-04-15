@@ -6,8 +6,31 @@ on:
       - main
 
 jobs:
+  # Job to run tests
+  test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Install dependencies
+        run: go mod download
+
+      # Run Go tests
+      - name: Run tests
+        run: go test ./...  # Run Go tests
+
+  # Job to compile the application
   compile:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    needs: test  # Ensure the `test` job runs before `compile`
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
